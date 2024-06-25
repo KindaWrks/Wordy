@@ -1,5 +1,6 @@
 extends Node2D
-
+## When EXPORTING under resources include non resource/folders the_words.txt or game will crash
+## as it can't locate the array do to not having the text file 
 @onready var line_edit = $LineEdit
 var guess_container = VBoxContainer.new()  # Create a VBoxContainer to hold all guesses
 var correct_word = ""  # Selected correct word
