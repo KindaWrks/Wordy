@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0eihojsj0sd8"]
+
+[ext_resource type="Script" path="res://wordy.gd" id="1_yjhex"]
+
+[node name="Wordy" type="Node2D"]
+script = ExtResource("1_yjhex")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 100.0
+offset_top = 246.0
+offset_right = 296.0
+offset_bottom = 291.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 96.0
+offset_top = 248.0
+offset_right = 398.0
+offset_bottom = 288.0
+bbcode_enabled = true
+
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
