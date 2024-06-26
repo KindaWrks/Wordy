@@ -10,6 +10,7 @@ var attempts = 0  # Number of attempts
 var current_date = ""  # Store the current date
 
 func _ready():
+	get_viewport().transparent_bg = true
 	# Load the array from a file
 	load_words_from_file("res://the_words.txt", correct_words)
 	

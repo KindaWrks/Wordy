@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=400
 window/size/viewport_height=400
+window/size/transparent=true
+window/per_pixel_transparency/allowed=true
 
 [filesystem]
 
