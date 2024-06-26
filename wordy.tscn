@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://pd518itkla8c" path="res://UI/squareRed.png" id="4_bjg4d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8ti4"]
-size = Vector2(364, 13.5)
+size = Vector2(290, 15.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cdawc"]
 size = Vector2(4.73564, 11.4805)
@@ -16,16 +16,16 @@ script = ExtResource("1_yjhex")
 
 [node name="ColorRectGrey" type="ColorRect" parent="."]
 process_mode = 4
-offset_left = 10.0
-offset_top = 14.0
-offset_right = 390.0
-offset_bottom = 389.0
+offset_left = 63.0
+offset_top = 18.0
+offset_right = 336.0
+offset_bottom = 306.0
 color = Color(0.20871, 0.20871, 0.20871, 1)
 
 [node name="GlassPanel" type="Sprite2D" parent="."]
 texture_filter = 4
-position = Vector2(201.5, 201.5)
-scale = Vector2(3.97, 3.95)
+position = Vector2(199.5, 161.5)
+scale = Vector2(2.99, 3.15)
 texture = ExtResource("2_hjf1n")
 
 [node name="LineEdit" type="LineEdit" parent="."]
@@ -49,10 +49,11 @@ texture = ExtResource("3_m3vb4")
 [node name="Area2Ddragarea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2Ddragarea"]
-position = Vector2(202, 12.25)
+position = Vector2(199, 13.25)
 shape = SubResource("RectangleShape2D_q8ti4")
 
 [node name="Area2Dclose" type="Area2D" parent="."]
+position = Vector2(-48, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2Dclose"]
 position = Vector2(370, 38.5)
@@ -60,7 +61,7 @@ scale = Vector2(3.80097, 2.1776)
 shape = SubResource("RectangleShape2D_cdawc")
 
 [node name="SquareRedclose" type="Sprite2D" parent="."]
-position = Vector2(370, 39)
+position = Vector2(322, 39)
 texture = ExtResource("4_bjg4d")
 
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
