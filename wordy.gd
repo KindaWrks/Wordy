@@ -2,6 +2,8 @@ extends Node2D
 ## When EXPORTING under resources include non resource/folders the_words.txt or game will crash
 ## as it can't locate the array do to not having the text file 
 @onready var line_edit = $LineEdit
+var selected = false
+var dragging_start_position = Vector2()
 var guess_container = VBoxContainer.new()  # Create a VBoxContainer to hold all guesses
 var correct_word = ""  # Selected correct word
 var correct_words = []  # Array of correct words
@@ -23,6 +25,28 @@ func _ready():
 	# Load the stored date from the file
 	check_date()
 	
+func _process(_delta):
+	if selected: # Dragging logic
+		var mouse_position = get_global_mouse_position()
+		var window_position = Vector2(DisplayServer.window_get_position())
+		DisplayServer.window_set_position(window_position + (mouse_position - dragging_start_position))
+	
+	
+func _on_area_2d_input_event(_viewport, _event, _shape_idx):
+	if Input.is_action_just_pressed("left_click"):
+		selected = true
+		dragging_start_position = get_global_mouse_position()
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			selected = false
+			
+func _on_area_2_dclose_input_event(_viewport, _event, _shape_idx):
+	if Input.is_action_just_pressed("left_click"):
+		get_tree().quit()
+			
+			
  # Get the date as 00/00/0000
 func get_date():
 	# Returning time/date stamp
