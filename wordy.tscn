@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0eihojsj0sd8"]
+[gd_scene load_steps=8 format=3 uid="uid://c0eihojsj0sd8"]
 
 [ext_resource type="Script" path="res://wordy.gd" id="1_yjhex"]
 [ext_resource type="Texture2D" uid="uid://i8luo8p23bed" path="res://UI/glassPanel.png" id="2_hjf1n"]
 [ext_resource type="Texture2D" uid="uid://cv4od2tfw4mvp" path="res://UI/blankLetterbacking.png" id="3_m3vb4"]
 [ext_resource type="Texture2D" uid="uid://pd518itkla8c" path="res://UI/squareRed.png" id="4_bjg4d"]
+[ext_resource type="Script" path="res://version_manager.gd" id="5_l0xw8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8ti4"]
 size = Vector2(290, 15.5)
@@ -36,9 +37,9 @@ offset_bottom = 291.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false
-offset_left = 96.0
+offset_left = 108.0
 offset_top = 248.0
-offset_right = 398.0
+offset_right = 410.0
 offset_bottom = 288.0
 bbcode_enabled = true
 
@@ -63,6 +64,9 @@ shape = SubResource("RectangleShape2D_cdawc")
 [node name="SquareRedclose" type="Sprite2D" parent="."]
 position = Vector2(322, 39)
 texture = ExtResource("4_bjg4d")
+
+[node name="VersionManager" type="Node" parent="."]
+script = ExtResource("5_l0xw8")
 
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="input_event" from="Area2Ddragarea" to="." method="_on_area_2d_input_event"]
