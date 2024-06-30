@@ -18,6 +18,7 @@ func _ready():
 	# Get current version from file
 	var current_version = get_version_from_file()
 	# Get remote version (is this correct?)
+	@warning_ignore("shadowed_variable")
 	var remote_version = get_remote_version()
 
 func get_version_from_file():
@@ -37,7 +38,7 @@ func get_remote_version():
 	var github_url = "https://raw.githubusercontent.com/KindaWrks/Wordy/main/version.txt"
 	http_request.request(github_url)
 
-func _on_remote_version_received(result, response_code, headers, body):
+func _on_remote_version_received(_result, response_code, _headers, body):
 	if response_code == 200:
 		remote_version = body.get_string_from_utf8().strip_edges()
 		print("Remote version:", remote_version) 
@@ -57,7 +58,7 @@ func download_update():
 	http_request.connect("request_completed", _on_request_completed)
 	http_request.request(url)
 
-func _on_request_completed(result, response_code, headers, body):
+func _on_request_completed(_result, response_code, _headers, _body):
 	if response_code == 200:
 		print("Download complete!")
 		update_version_file()
