@@ -6,7 +6,7 @@
 export.cfg
 export_presets.cfg
 version.txt
-.Updates/
+.Updates/wordy_update.zip
 
 # Imported translations (automatically generated from CSV files)
 *.translation
