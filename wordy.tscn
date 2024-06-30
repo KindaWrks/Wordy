@@ -68,6 +68,25 @@ texture = ExtResource("4_bjg4d")
 [node name="VersionManager" type="Node" parent="."]
 script = ExtResource("5_l0xw8")
 
+[node name="UCDialog" type="AcceptDialog" parent="VersionManager"]
+title = "Wordy Update"
+position = Vector2i(100, 70)
+size = Vector2i(200, 106)
+dialog_text = "      Update completed"
+
+[node name="UDDialog" type="Window" parent="VersionManager"]
+title = "Wordy Update"
+position = Vector2i(100, 70)
+size = Vector2i(200, 70)
+visible = false
+
+[node name="Label" type="Label" parent="VersionManager/UDDialog"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "
+    Updating, Please wait."
+
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="input_event" from="Area2Ddragarea" to="." method="_on_area_2d_input_event"]
 [connection signal="input_event" from="Area2Dclose" to="." method="_on_area_2_dclose_input_event"]
+[connection signal="confirmed" from="VersionManager/UCDialog" to="VersionManager" method="_on_accept_dialog_confirmed"]

@@ -8,6 +8,9 @@ var output_file = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/updated_files.zip
 var version_file = "user://version.txt"
 # Remote version text
 var remote_version = ""
+# Update comeplete confirm
+@onready var UCDialog = $UCDialog
+@onready var UDDialog = $UDDialog
 
 func _ready():
 	if not FileAccess.file_exists(version_file):
@@ -45,6 +48,7 @@ func _on_remote_version_received(_result, response_code, _headers, body):
 		# Compare versions and download update if necessary
 		if get_version_from_file() != remote_version:
 			download_update()
+			UDDialog.visible = true
 			print("Downloading please wait...")
 		else:
 			print("Version up to date!")
@@ -61,6 +65,8 @@ func download_update():
 func _on_request_completed(_result, response_code, _headers, _body):
 	if response_code == 200:
 		print("Download complete!")
+		UDDialog.visible = false
+		UCDialog.visible = true
 		update_version_file()
 	else:
 		print("Download failed with code ", response_code)
@@ -75,3 +81,7 @@ func update_version_file():
 		file.close()
 	else:
 		print("Failed to update version file.")
+
+
+func _on_accept_dialog_confirmed():
+	UCDialog.queue_free()
