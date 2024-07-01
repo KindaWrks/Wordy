@@ -10,6 +10,7 @@ var correct_words = []  # Array of correct words
 var attempts = 0  # Number of attempts
 @onready var attempts_taken = $RichTextLabel
 var current_date = ""  # Store the current date
+var game_sounds = {}
 
 func _ready():
 	get_viewport().transparent_bg = true
@@ -24,6 +25,12 @@ func _ready():
 	
 	# Load the stored date from the file
 	check_date()
+	game_sound_effects()
+	
+func game_sound_effects():
+	# Load and assign sounds by name
+	game_sounds["clapping"] = load("res://Sounds/clapping.mp3")
+
 	
 func _process(_delta):
 	if selected: # Dragging logic
@@ -133,6 +140,8 @@ func _on_line_edit_text_submitted(text):
 		line_edit.queue_free()
 		attempts_taken.visible = true  # Temp richtextlabel to have a guess amounts win screen
 		attempts_taken.text = "It took you " + str(attempts) + " attempts!"
+		$AudioStreamPlayer.stream = game_sounds["clapping"]
+		$AudioStreamPlayer.play()
 		# Save the current date here
 		var file = FileAccess.open("user://stored_date.txt", FileAccess.WRITE)
 		file.store_line(get_date())
