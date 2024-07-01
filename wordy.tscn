@@ -71,8 +71,9 @@ script = ExtResource("5_l0xw8")
 [node name="UCDialog" type="AcceptDialog" parent="VersionManager"]
 title = "Wordy Update"
 position = Vector2i(100, 70)
-size = Vector2i(200, 106)
-dialog_text = "      Update completed"
+size = Vector2i(214, 106)
+dialog_text = "      Update completed
+Please replace Wordy.exe"
 
 [node name="UDDialog" type="Window" parent="VersionManager"]
 title = "Wordy Update"
