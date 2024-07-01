@@ -11,6 +11,8 @@ var attempts = 0  # Number of attempts
 @onready var attempts_taken = $RichTextLabel
 var current_date = ""  # Store the current date
 var game_sounds = {}
+@onready var fireworks = $fireworks
+@onready var fireworks_mirror = $fireworks/mirrored
 
 func _ready():
 	get_viewport().transparent_bg = true
@@ -142,6 +144,9 @@ func _on_line_edit_text_submitted(text):
 		attempts_taken.text = "It took you " + str(attempts) + " attempts!"
 		$AudioStreamPlayer.stream = game_sounds["clapping"]
 		$AudioStreamPlayer.play()
+		fireworks.visible = true
+		fireworks.play("stars")
+		fireworks_mirror.play("stars_mirror")
 		# Save the current date here
 		var file = FileAccess.open("user://stored_date.txt", FileAccess.WRITE)
 		file.store_line(get_date())
