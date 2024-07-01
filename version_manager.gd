@@ -3,7 +3,7 @@ extends Node
 # URL for the updated files zip (use HTTPS for security)
 var url = "https://raw.githubusercontent.com/KindaWrks/Wordy/main/Updates/wordy_update.zip"
 # Output file path (desktop)
-var output_file = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/updated_files.zip"
+var output_file = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/wordy_update.zip"
 # Version file path (user://version.txt)
 var version_file = "user://version.txt"
 # Remote version text
@@ -84,4 +84,5 @@ func update_version_file():
 
 
 func _on_accept_dialog_confirmed():
+	get_tree().quit()
 	UCDialog.queue_free()
