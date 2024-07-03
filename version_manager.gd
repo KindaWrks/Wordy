@@ -1,7 +1,7 @@
 extends Node
 
-# URL for the updated files zip (use HTTPS for security)
-var url = "https://raw.githubusercontent.com/KindaWrks/Wordy/main/Updates/wordy_update.zip"
+# URL for the updated files zip (use HTTPS for security) changed to wordy_updates repo
+var url = "https://raw.githubusercontent.com/KindaWrks/wordy_updates/main/wordy_update.zip"
 # Output file path (desktop)
 var output_file = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/wordy_update.zip"
 # Version file path (user://version.txt)
@@ -38,7 +38,7 @@ func get_remote_version():
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.connect("request_completed", _on_remote_version_received)
-	var github_url = "https://raw.githubusercontent.com/KindaWrks/Wordy/main/version.txt"
+	var github_url = "https://raw.githubusercontent.com/KindaWrks/wordy_updates/main/version.txt" # Changed to wordy_updates repo
 	http_request.request(github_url)
 
 func _on_remote_version_received(_result, response_code, _headers, body):
