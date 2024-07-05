@@ -13,6 +13,7 @@ var current_date = ""  # Store the current date
 var game_sounds = {}
 @onready var fireworks = $fireworks
 @onready var fireworks_mirror = $fireworks/mirrored
+@onready var leaderboard = $LeaderBoard
 
 func _ready():
 	get_viewport().transparent_bg = true
@@ -60,8 +61,7 @@ func _on_area_2_dclose_input_event(_viewport, _event, _shape_idx):
 func get_date():
 	# Returning time/date stamp
 	var time = Time.get_datetime_dict_from_system()
-	@warning_ignore("shadowed_variable")
-	var current_date = "%d/%02d/%02d" % \
+	current_date = "%d/%02d/%02d" % \
 		[time.month, time.day, time.year]
 	return current_date
 
@@ -147,6 +147,7 @@ func _on_line_edit_text_submitted(text):
 		fireworks.visible = true
 		fireworks.play("stars")
 		fireworks_mirror.play("stars_mirror")
+		leaderboard.update_score(attempts)
 		# Save the current date here
 		var file = FileAccess.open("user://stored_date.txt", FileAccess.WRITE)
 		file.store_line(get_date())
@@ -154,6 +155,7 @@ func _on_line_edit_text_submitted(text):
 	else:
 		if attempts == 6:
 			line_edit.text = "Correct answer: " + correct_word.to_upper()
+			leaderboard.update_score(attempts)
 			line_edit.editable = false  # Disable editing
 			line_edit.focus_mode = false  # Disable focus
 			line_edit.set_meta("mouse_filter", Control.MOUSE_FILTER_STOP)  # Stop mouse interaction

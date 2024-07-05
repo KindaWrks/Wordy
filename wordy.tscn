@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c0eihojsj0sd8"]
+[gd_scene load_steps=15 format=3 uid="uid://c0eihojsj0sd8"]
 
 [ext_resource type="Script" path="res://wordy.gd" id="1_yjhex"]
 [ext_resource type="Texture2D" uid="uid://i8luo8p23bed" path="res://UI/glassPanel.png" id="2_hjf1n"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ckfqf8nvc3f8u" path="res://Effects/fireworks 1.png" id="6_x6v86"]
 [ext_resource type="Texture2D" uid="uid://w04omceysl8q" path="res://Effects/fireworks 2.png" id="7_3v8fy"]
 [ext_resource type="Texture2D" uid="uid://by6dilb4s1xy6" path="res://Effects/fireworks 3.png" id="8_2ht8c"]
+[ext_resource type="Script" path="res://LeaderBoard.gd" id="9_jr2qa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8ti4"]
 size = Vector2(290, 15.5)
@@ -177,6 +178,24 @@ position = Vector2(-148.006, 10.9188)
 rotation = -3.1388
 sprite_frames = SubResource("SpriteFrames_g380k")
 animation = &"stars_mirror"
+
+[node name="LeaderBoard" type="Node2D" parent="."]
+visible = false
+script = ExtResource("9_jr2qa")
+
+[node name="LeaderboardLabel" type="Label" parent="LeaderBoard"]
+z_index = 1
+offset_left = 102.0
+offset_top = 41.0
+offset_right = 300.0
+offset_bottom = 235.0
+
+[node name="ColorRect" type="ColorRect" parent="LeaderBoard"]
+offset_left = 96.0
+offset_top = 35.0
+offset_right = 307.0
+offset_bottom = 241.0
+color = Color(0.299547, 0.299547, 0.299547, 1)
 
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="input_event" from="Area2Ddragarea" to="." method="_on_area_2d_input_event"]
