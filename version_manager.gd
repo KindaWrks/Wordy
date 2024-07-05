@@ -6,6 +6,8 @@ var url = "https://raw.githubusercontent.com/KindaWrks/wordy_updates/main/wordy_
 var output_file = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/wordy_update.zip"
 # Version file path (user://version.txt)
 var version_file = "user://version.txt"
+# Current Version
+var current_version = ""
 # Remote version text
 var remote_version = ""
 # Update comeplete confirm
@@ -18,16 +20,15 @@ func _ready():
 		file.store_string("1.0.0")  # or any other default version
 		file.close()
 		
-	# Get current version from file
-	var current_version = get_version_from_file()
+	# Get current version from file (make out of func var?)
+	current_version = get_version_from_file()
 	# Get remote version (is this correct?)
-	@warning_ignore("shadowed_variable")
-	var remote_version = get_remote_version()
+	remote_version = get_remote_version()
 
 func get_version_from_file():
 	var version = ""
 	var file = FileAccess.open(version_file, FileAccess.READ)
-	if file.file_exists(version_file):
+	if FileAccess.file_exists(version_file):
 		version = file.get_as_text().strip_edges()
 	else:
 		print("Version file not found.")
