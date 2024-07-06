@@ -5,7 +5,7 @@ extends Node
 const LEADERBOARD_FILE = "user://LBoard.txt"
 
 @onready var LBoard = $"."
-@onready var LBLabel = $LeaderboardLabel
+@onready var LBLabel = $ScrollContainer/LeaderboardLabel
 
 var leaderboard_data = {}
 
@@ -16,6 +16,9 @@ func _ready():
 func _process(_delta):
 	var attempts = get_parent().attempts
 	show_hide_lb()
+	
+	if get_current_weekday() == "Saturday":
+		update_lb_label()
 
 func load_leaderboard():
 	var file = FileAccess.open(LEADERBOARD_FILE, FileAccess.READ)
@@ -52,10 +55,12 @@ func update_score(attempts):
 	save_leaderboard()
 	
 func update_lb_label():
-	# Construct text to display in the label
 	var lb_text = "           Leaderboard\n" + "         ________________" + "\n"
 	for date_key in leaderboard_data.keys():
 		lb_text += date_key + ": " + str(leaderboard_data[date_key]) + "\n"
+	
+	var week_total = calculate_week_total()
+	lb_text += "\nWeek Total: " + str(week_total)
 	
 	LBLabel.text = lb_text
 	
@@ -74,3 +79,15 @@ func check_new_week():
 		return true
 	else:
 		return false
+		
+func calculate_week_total():
+	var week_total = 0
+	var current_weekday = Time.get_datetime_dict_from_system().weekday
+	var days_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+	
+	for day_key in leaderboard_data.keys():
+		var day_index = days_of_week.find(day_key)
+		if day_index <= current_weekday:
+			week_total += leaderboard_data[day_key]
+	
+	return week_total

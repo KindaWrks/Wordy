@@ -186,19 +186,23 @@ visible = false
 z_index = 1
 script = ExtResource("9_jr2qa")
 
-[node name="LeaderboardLabel" type="Label" parent="LeaderBoard"]
-z_index = 1
-offset_left = 102.0
-offset_top = 41.0
-offset_right = 300.0
-offset_bottom = 235.0
-
 [node name="ColorRect" type="ColorRect" parent="LeaderBoard"]
 offset_left = 96.0
 offset_top = 35.0
 offset_right = 307.0
 offset_bottom = 241.0
 color = Color(0.299547, 0.299547, 0.299547, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LeaderBoard"]
+offset_left = 105.0
+offset_top = 41.0
+offset_right = 301.0
+offset_bottom = 236.0
+horizontal_scroll_mode = 0
+
+[node name="LeaderboardLabel" type="Label" parent="LeaderBoard/ScrollContainer"]
+z_index = 1
+layout_mode = 2
 
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="input_event" from="Area2Ddragarea" to="." method="_on_area_2d_input_event"]
