@@ -184,7 +184,13 @@ animation = &"stars_mirror"
 [node name="LeaderBoard" type="Node2D" parent="."]
 visible = false
 z_index = 1
+position = Vector2(-9, 0)
 script = ExtResource("9_jr2qa")
+
+[node name="glassPanel" type="Sprite2D" parent="LeaderBoard"]
+position = Vector2(202.5, 138.5)
+scale = Vector2(2.31, 2.25)
+texture = ExtResource("2_hjf1n")
 
 [node name="ColorRect" type="ColorRect" parent="LeaderBoard"]
 offset_left = 96.0
