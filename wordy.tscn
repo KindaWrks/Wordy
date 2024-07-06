@@ -168,12 +168,14 @@ stream = SubResource("AudioStreamMP3_q50a0")
 
 [node name="fireworks" type="AnimatedSprite2D" parent="."]
 visible = false
+z_index = 2
 position = Vector2(124, 154)
 rotation = 3.14104
 sprite_frames = SubResource("SpriteFrames_e4xox")
 animation = &"stars"
 
 [node name="mirrored" type="AnimatedSprite2D" parent="fireworks"]
+z_index = 2
 position = Vector2(-148.006, 10.9188)
 rotation = -3.1388
 sprite_frames = SubResource("SpriteFrames_g380k")
@@ -181,6 +183,7 @@ animation = &"stars_mirror"
 
 [node name="LeaderBoard" type="Node2D" parent="."]
 visible = false
+z_index = 1
 script = ExtResource("9_jr2qa")
 
 [node name="LeaderboardLabel" type="Label" parent="LeaderBoard"]
