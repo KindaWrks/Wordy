@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://i8luo8p23bed" path="res://UI/glassPanel.png" id="2_hjf1n"]
 [ext_resource type="Texture2D" uid="uid://cv4od2tfw4mvp" path="res://UI/blankLetterbacking.png" id="3_m3vb4"]
 [ext_resource type="Texture2D" uid="uid://pd518itkla8c" path="res://UI/squareRed.png" id="4_bjg4d"]
-[ext_resource type="Script" path="res://version_manager.gd" id="5_l0xw8"]
 [ext_resource type="Texture2D" uid="uid://ckfqf8nvc3f8u" path="res://Effects/fireworks 1.png" id="6_x6v86"]
 [ext_resource type="Texture2D" uid="uid://w04omceysl8q" path="res://Effects/fireworks 2.png" id="7_3v8fy"]
 [ext_resource type="Texture2D" uid="uid://by6dilb4s1xy6" path="res://Effects/fireworks 3.png" id="8_2ht8c"]
+[ext_resource type="Texture2D" uid="uid://cky7jmdvniq11" path="res://UI/squareWhite.png" id="9_i1a55"]
 [ext_resource type="Script" path="res://LeaderBoard.gd" id="9_jr2qa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8ti4"]
@@ -141,28 +141,6 @@ shape = SubResource("RectangleShape2D_cdawc")
 position = Vector2(322, 39)
 texture = ExtResource("4_bjg4d")
 
-[node name="VersionManager" type="Node" parent="."]
-script = ExtResource("5_l0xw8")
-
-[node name="UCDialog" type="AcceptDialog" parent="VersionManager"]
-title = "Wordy Update"
-position = Vector2i(100, 70)
-size = Vector2i(214, 106)
-dialog_text = "      Update completed
-Please replace Wordy.exe"
-
-[node name="UDDialog" type="Window" parent="VersionManager"]
-title = "Wordy Update"
-position = Vector2i(100, 70)
-size = Vector2i(200, 70)
-visible = false
-
-[node name="Label" type="Label" parent="VersionManager/UDDialog"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "
-    Updating, Please wait."
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMP3_q50a0")
 
@@ -210,7 +188,26 @@ horizontal_scroll_mode = 0
 z_index = 1
 layout_mode = 2
 
+[node name="SquareWhite" type="Sprite2D" parent="."]
+position = Vector2(322, 72)
+texture = ExtResource("9_i1a55")
+
+[node name="PNButton" type="Button" parent="SquareWhite"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -8.0
+offset_top = -10.0
+offset_right = 7.0
+offset_bottom = 9.0
+
+[node name="PNTextEdit" type="TextEdit" parent="SquareWhite"]
+visible = false
+offset_left = -213.0
+offset_top = -35.0
+offset_right = -41.0
+offset_bottom = 166.0
+wrap_mode = 1
+
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="input_event" from="Area2Ddragarea" to="." method="_on_area_2d_input_event"]
 [connection signal="input_event" from="Area2Dclose" to="." method="_on_area_2_dclose_input_event"]
-[connection signal="confirmed" from="VersionManager/UCDialog" to="VersionManager" method="_on_accept_dialog_confirmed"]
+[connection signal="pressed" from="SquareWhite/PNButton" to="." method="_on_pn_button_pressed"]

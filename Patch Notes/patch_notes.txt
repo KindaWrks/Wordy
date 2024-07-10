@@ -1,0 +1,1 @@
+With the current update users will need to go into there %appdata% and delete their LBoard file.

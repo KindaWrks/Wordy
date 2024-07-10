@@ -17,13 +17,15 @@ func _process(_delta):
 	var attempts = get_parent().attempts
 	show_hide_lb()
 	
-	if get_current_weekday() == "Saturday":
+	# Check for new week and reset leaderboard if it's Monday
+	if get_current_weekday() == "Monday":
+		reset_leaderboard()
 		update_lb_label()
 
 func load_leaderboard():
 	var file = FileAccess.open(LEADERBOARD_FILE, FileAccess.READ)
 	if FileAccess.file_exists(LEADERBOARD_FILE):
-		FileAccess.open(LEADERBOARD_FILE, FileAccess.READ)
+		file.open(LEADERBOARD_FILE, FileAccess.READ)
 		while not file.eof_reached():
 			var line = file.get_line().strip_edges()
 			if line != "":
@@ -34,7 +36,7 @@ func load_leaderboard():
 
 func save_leaderboard():
 	var file = FileAccess.open(LEADERBOARD_FILE, FileAccess.WRITE)
-	FileAccess.open(LEADERBOARD_FILE, FileAccess.WRITE)
+	file.open(LEADERBOARD_FILE, FileAccess.WRITE)
 	for date_key in leaderboard_data.keys():
 		file.store_line(date_key + ": " + str(leaderboard_data[date_key]))
 	file.close()
@@ -63,27 +65,19 @@ func update_lb_label():
 	lb_text += "\nWeek Total: " + str(week_total)
 	
 	LBLabel.text = lb_text
-	
+
 func show_hide_lb():
 	if Input.is_action_just_pressed("Show_LB"):
 		LBoard.visible = !LBoard.visible
-	
 
 func get_current_weekday():
 	var day = Time.get_datetime_dict_from_system()
-	return ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][day.weekday]
+	return ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][day.weekday]
 
-func check_new_week():
-	var current_date = get_current_weekday()
-	if current_date not in leaderboard_data:
-		return true
-	else:
-		return false
-		
 func calculate_week_total():
 	var week_total = 0
 	var current_weekday = Time.get_datetime_dict_from_system().weekday
-	var days_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+	var days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 	
 	for day_key in leaderboard_data.keys():
 		var day_index = days_of_week.find(day_key)
@@ -91,3 +85,7 @@ func calculate_week_total():
 			week_total += leaderboard_data[day_key]
 	
 	return week_total
+
+func reset_leaderboard():
+	leaderboard_data.clear()
+	save_leaderboard()

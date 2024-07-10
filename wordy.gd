@@ -14,6 +14,8 @@ var game_sounds = {}
 @onready var fireworks = $fireworks
 @onready var fireworks_mirror = $fireworks/mirrored
 @onready var leaderboard = $LeaderBoard
+@onready var PNTextEdit = $SquareWhite/PNTextEdit
+var PNText = "res://Patch Notes/patch_notes.txt"
 
 func _ready():
 	get_viewport().transparent_bg = true
@@ -188,3 +190,11 @@ func create_button(letter, i):
 	sprite.position = Vector2(x, y)  # Set the position of the sprite
 	
 	return sprite
+
+
+func _on_pn_button_pressed():
+	PNTextEdit.visible = !PNTextEdit.visible
+	var file = FileAccess.open(PNText, FileAccess.READ)
+	var patchnotes = file.get_as_text()
+	PNTextEdit.text = patchnotes
+	print("PN CLICK")
