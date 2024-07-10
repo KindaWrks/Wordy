@@ -72,12 +72,13 @@ func show_hide_lb():
 
 func get_current_weekday():
 	var day = Time.get_datetime_dict_from_system()
-	return ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][day.weekday]
+	return ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][day.weekday]
+
 
 func calculate_week_total():
 	var week_total = 0
 	var current_weekday = Time.get_datetime_dict_from_system().weekday
-	var days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+	var days_of_week = ["Sunday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Saturday"]
 	
 	for day_key in leaderboard_data.keys():
 		var day_index = days_of_week.find(day_key)

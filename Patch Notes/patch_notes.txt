@@ -1,1 +1,5 @@
-With the current update users will need to go into there %appdata% and delete their LBoard file.
+Update 1.0.4.4
+----------------- 
+Users will need to go into there %appdata% and delete their LBoard file.
+
+Days of the week are corrected.
