@@ -14,6 +14,7 @@ var game_sounds = {}
 @onready var fireworks = $fireworks
 @onready var fireworks_mirror = $fireworks/mirrored
 @onready var leaderboard = $LeaderBoard
+@onready var LoFi_BGM = $AudioStreamPlayerBGM
 @onready var PNTextEdit = $SquareWhite/PNTextEdit
 var PNText = "res://Patch Notes/patch_notes.txt"
 

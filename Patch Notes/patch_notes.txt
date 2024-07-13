@@ -1,5 +1,5 @@
-Update 1.0.4.4
+Update 1.0.4.5
 ----------------- 
-Users will need to go into there %appdata% and delete their LBoard file.
-
+Background music was added.
 Days of the week are corrected.
+Weekly reset should be fixed.
