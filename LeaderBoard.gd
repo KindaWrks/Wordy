@@ -58,11 +58,14 @@ func update_score(attempts):
 	
 func update_lb_label():
 	var lb_text = "           Leaderboard\n" + "         ________________" + "\n"
-	for date_key in leaderboard_data.keys():
-		lb_text += date_key + ": " + str(leaderboard_data[date_key]) + "\n"
+	var cumulative_total = 0
 	
-	var week_total = calculate_week_total()
-	lb_text += "\nWeek Total: " + str(week_total)
+	for date_key in leaderboard_data.keys():
+		var score = leaderboard_data[date_key]
+		cumulative_total += score
+		lb_text += date_key + ": " + str(score) + "\n"
+	
+	lb_text += "\nWeek Total: " + str(cumulative_total)
 	
 	LBLabel.text = lb_text
 
