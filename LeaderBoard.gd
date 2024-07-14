@@ -78,7 +78,7 @@ func get_current_weekday():
 func calculate_week_total():
 	var week_total = 0
 	var current_weekday = Time.get_datetime_dict_from_system().weekday
-	var days_of_week = ["Sunday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Saturday"]
+	var days_of_week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 	
 	for day_key in leaderboard_data.keys():
 		var day_index = days_of_week.find(day_key)
