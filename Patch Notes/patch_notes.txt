@@ -1,5 +1,3 @@
-Update 1.0.4.5
+Update 1.0.4.6
 ----------------- 
-Background music was added.
-Days of the week are corrected.
-Weekly reset should be fixed.
+Weekly reset fixed?
