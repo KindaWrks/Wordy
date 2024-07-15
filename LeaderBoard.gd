@@ -90,6 +90,13 @@ func calculate_week_total():
 	
 	return week_total
 
+# Fixed monday reset bug?
 func reset_leaderboard():
-	leaderboard_data.clear()
-	save_leaderboard()
+	if get_current_weekday() == "Monday":
+		var current_week_total = calculate_week_total()
+		leaderboard_data.clear()
+		leaderboard_data["Monday"] = current_week_total  # Save the current Monday's score
+		save_leaderboard()
+	else:
+		leaderboard_data.clear()
+		save_leaderboard()
