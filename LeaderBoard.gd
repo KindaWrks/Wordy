@@ -1,7 +1,7 @@
 # Leaderboard.gd
 
 extends Node
-
+##
 const LEADERBOARD_FILE = "user://LBoard.txt"
 
 @onready var LBoard = $"."
